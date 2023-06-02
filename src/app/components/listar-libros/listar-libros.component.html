@@ -1,0 +1,44 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>Listar libros</title>
+</head>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1>Listado de libros</h1>
+                    <button class="btn btn-info float-start" routerLink="/crear-autor">Nuevo autor</button>
+                    <button class="btn btn-success float-end" routerLink="/crear-libro">Nuevo libro</button>
+                    <table *ngIf="listaLibros.length > 0" class="table table-striped mt-3">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Numero de páginas</th>
+                            <th scope="col">autor</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor = "let libro of listaLibros">
+                            <td>{{libro.nombre}}</td>
+                            <td>{{libro.descripcion}}</td>
+                            <td>{{libro.nro_paginas}}</td>
+                            <td>{{libro.autor}}</td>
+                            <td>
+                              <i [routerLink]="['/editar-libro', libro._id]" class="fa-sharp fa-solid fa-pen-to-square" style="color: #005eff;"></i>
+                            </td>
+                            <td>
+                              <i (click)="eliminarLibro(libro._id)" class="fa-sharp fa-solid fa-trash" style="color: #fa0000;"></i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <h5 style="text-align: center; margin-top: 10px;" *ngIf="listaLibros.length == 0">No hay libros para mostrar</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

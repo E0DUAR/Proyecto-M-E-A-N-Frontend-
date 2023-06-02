@@ -1,0 +1,80 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>{{titulo | uppercase }}</title>
+</head>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1>{{titulo | uppercase }}</h1>
+                    <form class="mt-3" [formGroup]="libroForm" (ngSubmit)="agregarLibro()">
+                        <div class="mb-3">
+                            <input type="text" formControlName="nombre" class="form-control form-control-lg"
+                                placeholder="nombre">
+                            <div class="text-danger"
+                                *ngIf="libroForm.get('nombre')?.hasError('required') && libroForm.get('nombre')?.touched">
+                                <span>El nombre del libro <strong>es obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" formControlName="descripcion" class="form-control form-control-lg"
+                                placeholder="descripcion">
+                            <div class="text-danger"
+                                *ngIf="libroForm.get('descripcion')?.hasError('required') && libroForm.get('descripcion')?.touched">
+                                <span>La descripcion <strong>es obligatoria</strong></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" formControlName="nro_paginas" class="form-control form-control-lg"
+                                placeholder="Número de páginas">
+                            <div class="text-danger"
+                                *ngIf="libroForm.get('nro_paginas')?.hasError('required') && libroForm.get('nro_paginas')?.touched">
+                                <span>Número de páginas <strong>es obligatorio</strong></span>
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="mb-3">
+                            <input type="text" formControlName="autor" class="form-control form-control-lg"
+                                placeholder="autor">
+                            <div class="text-danger"
+                                *ngIf="libroForm.get('autor')?.hasError('required') && libroForm.get('autor')?.touched">
+                                <span>El autor <strong>es obligatorio</strong></span>
+                            </div>
+                        </div>-->
+
+                        <!--<div class="mb-3">
+                            <select formControlName="autor" class="form-control form-control-lg">
+                              <option value="">Seleccione un autor</option>
+                              <option *ngFor="let autor of autores" [ngValue]="autor">{{ autor.nombre }} {{ autor.apellido }}</option>
+                            </select>
+                            <div class="text-danger"
+                              *ngIf="libroForm.get('autor')?.hasError('required') && libroForm.get('autor')?.touched">
+                              <span>El autor <strong>es obligatorio</strong></span>
+                            </div>
+                          </div>-->
+
+                          <div class="mb-3">
+                            <select formControlName="autor" class="form-control form-control-lg">
+                                <option value="">Seleccione un autor</option>
+                                <option *ngFor="let autor of autores" [value]="autor._id">{{ autor.nombre }} {{ autor.apellido }}</option>
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="libroForm.get('autor')?.hasError('required') && libroForm.get('autor')?.touched">
+                                <span>El autor <strong>es obligatorio</strong></span>
+                            </div>
+                        </div>
+                        
+
+                        <div class="mb-3">
+                            <button routerLink="/" class="btn btn-secondary btn-lg float-start">VOLVER</button>
+                            <button type="submit" [disabled]="libroForm.invalid" class="btn btn-success btn-lg float-end">ACEPTAR</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

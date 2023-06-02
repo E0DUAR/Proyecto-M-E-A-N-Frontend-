@@ -1,0 +1,46 @@
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>{{titulo | uppercase }}</title>
+</head>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h1>{{titulo | uppercase }}</h1>
+                    <form class="mt-3" [formGroup]="autorForm" (ngSubmit)="agregarAutor()">
+                        <div class="mb-3">
+                            <input type="text" formControlName="nombre" class="form-control form-control-lg"
+                                placeholder="Nombre">
+                            <div class="text-danger"
+                                *ngIf="autorForm.get('nombre')?.hasError('required') && autorForm.get('nombre')?.touched">
+                                <span>El nombre del autor <strong>es obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" formControlName="apellido" class="form-control form-control-lg"
+                                placeholder="Apellido">
+                            <div class="text-danger"
+                                *ngIf="autorForm.get('apellido')?.hasError('required') && autorForm.get('apellido')?.touched">
+                                <span>El apellido del autor <strong>es obligatorio</strong></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" formControlName="edad" class="form-control form-control-lg"
+                                placeholder="Edad">
+                            <div class="text-danger"
+                                *ngIf="autorForm.get('edad')?.hasError('required') && autorForm.get('edad')?.touched">
+                                <span>La edad del autor <strong>es obligatoria</strong></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button routerLink="/" class="btn btn-secondary btn-lg float-start">VOLVER</button>
+                            <button type="submit" [disabled]="autorForm.invalid" class="btn btn-success btn-lg float-end">ACEPTAR</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
